@@ -1,26 +1,97 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { createAdapter, EncryptionAlgorithm } from "iocane";
 
-function App() {
+export default function App() {
+  function encrypt(): void {
+    const msg: HTMLTextAreaElement = document.querySelector("#msg")!;
+    const key: HTMLTextAreaElement = document.querySelector("#key")!;
+
+    if (!msg.value || !key.value) return;
+
+    createAdapter()
+      .setAlgorithm(EncryptionAlgorithm.CBC)
+      .setDerivationRounds(14)
+      .encrypt(msg.value, key.value)
+      .then((res) => showResult(res.toString()));
+  }
+  function decrypt(): void {
+    const msg: HTMLTextAreaElement = document.querySelector("#msg")!;
+    const key: HTMLTextAreaElement = document.querySelector("#key")!;
+
+    if (!msg.value || !key.value) return;
+
+    createAdapter()
+      .decrypt(msg.value, key.value)
+      .then((res) => showResult(res.toString()));
+  }
+  function showResult(msg: string) {
+    const message: HTMLTextAreaElement = document.querySelector("#msg")!;
+    toggleBtn(true)
+    message.value = msg;
+  }
+  function toggleBtn(state: boolean):void {
+    const btn_copy: HTMLInputElement = document.querySelector("#btn_copy")!;
+    btn_copy.hidden = state ? false : true
+  }
+  function resetFields(): void {
+    const message: HTMLTextAreaElement = document.querySelector("#msg")!;
+    const key: HTMLInputElement = document.querySelector("#key")!;
+
+    toggleBtn(false)
+    message.value = "";
+    key.value = "";
+
+  }
+  function copyToClipboard(): void {
+    const message: HTMLTextAreaElement = document.querySelector("#msg")!;
+    navigator.clipboard.writeText(message.value)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container mt-5">
+      <form>
+        <div className="form-group m-2">
+          <label className="mb-2">Message:</label>
+          <textarea
+            className="form-control"
+            id="msg"
+            placeholder="(text here)"
+          />
+        </div>
+        <div className="form-group m-2">
+          <label className="mb-2">Key:</label>
+          <input
+            type="password"
+            className="form-control"
+            id="key"
+            placeholder="******"
+          />
+        </div>
+      </form>
+
+      <div className="container mt-5">
+        <div className="row justify-content-center">
+          <div className="col-auto py-3">
+            <a className="btn btn-primary" href="/#" onClick={encrypt}>
+              Encrypt
+            </a>
+          </div>
+          <div className="col-auto py-3">
+            <a className="btn btn-primary" href="/#" onClick={decrypt}>
+              Decrypt
+            </a>
+          </div>
+          <div className="col-auto py-3">
+            <a className="btn btn-secondary" href="/#" onClick={resetFields}>
+              Reset
+            </a>
+          </div>
+          <div className="col-auto py-3">
+            <a className="btn btn-success" href="/#" id="btn_copy" hidden={true} onClick={copyToClipboard}>
+              Copy to Clipboard
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
-
-export default App;
