@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import cn from 'classnames'
 
 export const App: React.FC = () => {
-  const [ message, setMessage] = useState<string>(""),
-  [ messageisValid, setValidMsg] = useState<boolean>(false),
-  [ key, setKey] = useState<string>(""),
-  [ keyisValid, setValidKey] = useState<boolean>(false),
-  [ btnCopyVisible, setBtnCopyVisible] = useState<boolean>(false)
+  const [ message, setMessage] = useState<string>("")
+  const [ messageisValid, setValidMsg] = useState<boolean>(false)
+  const [ key, setKey] = useState<string>("")
+  const [ keyisValid, setValidKey] = useState<boolean>(false)
+  const [ btnCopyVisible, setBtnCopyVisible] = useState<boolean>(false)
 
   function encrypt() {
     if (key && message) {
