@@ -39,14 +39,13 @@ export const App: React.FC = () => {
   }
   function changeHandler (e:any) {
     if (e.target.type === 'password') {
-      setValidKey(e.target.value > 0)
+      setValidKey(e.target.value.length > 0)
       setKey(e.target.value)
     }
     if (e.target.type === 'textarea') {
-      setValidMsg(e.target.value > 0)
+      setValidMsg(e.target.value.length > 0)
       setMessage(e.target.value)
     }
-
   }
   function reset() {
     setBtnCopyVisible(false)
