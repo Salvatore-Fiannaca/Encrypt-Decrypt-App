@@ -110,30 +110,30 @@ export const App: React.FC = () => {
       <div className="container mt-5">
         <div className="row justify-content-center">
           <div className="col-auto py-3">
-            <a className="btn btn-primary" href="/#" onClick={encrypt}>
+            <button className="btn btn-primary" onClick={encrypt}>
               Encrypt
-            </a>
+            </button>
           </div>
           <div className="col-auto py-3">
-            <a className="btn btn-primary" href="/#" onClick={decrypt}>
+            <button className="btn btn-primary" onClick={decrypt}>
               Decrypt
-            </a>
+            </button>
           </div>
           
           {
             (key !== '' || message !== '') &&
             <div className="col-auto py-3">
-              <a className="btn btn-secondary" href="/#" onClick={reset}>
+              <button className="btn btn-secondary" onClick={reset}>
                 Reset
-              </a>
+              </button>
             </div>
           }
           {
             ( message !== '' && btnCopyVisible ) && 
             <div className="col-auto py-3">
-              <a className="btn btn-success" href="/#" onClick={copyToClipboard}>
+              <button className="btn btn-success" onClick={copyToClipboard}>
                 Copy to Clipboard
-              </a>
+              </button>
             </div>
           }
 
