@@ -80,20 +80,19 @@ export const App: React.FC = () => {
     <div className="container mt-5">
       <form>
         <div className="form-group m-2">
-          <label className="mb-2">Message:</label>
+          <label className="mb-2">Paste your message here</label>
           <textarea
             className={cn(
               "form-control",
               {'is-valid': messageisValid},
               {'is-invalid': !messageisValid}
             )}
-            placeholder="(text here)"
             value={message}
             onChange={changeHandler} 
           />
         </div>
         <div className="form-group m-2">
-          <label className="mb-2">Key:</label>
+          <label className="mb-2">Protect with a key</label>
           <input
             type="password"
             className={cn(
@@ -101,7 +100,6 @@ export const App: React.FC = () => {
               {'is-valid': keyisValid},
               {'is-invalid': !keyisValid}
             )}
-            placeholder="******"
             value={key}
             onChange={changeHandler} 
           />
