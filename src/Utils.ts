@@ -1,8 +1,8 @@
-export function generateKey(len: number = 8): string {
+export function generateKey(len: number = 20): string {
     let randomKey: string = '';
-    const char : string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!£$%&/()=^?";
+    const char : string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#[]*}{@!£$%&/(-)=^?";
     for (let i = 0; i < len; i++) {
-      let randomChar: string = char[Math.floor(Math.random() * 64)];
+      let randomChar: string = char[Math.floor(Math.random() * 81)];
       randomKey +=  randomChar;
     }
     return randomKey

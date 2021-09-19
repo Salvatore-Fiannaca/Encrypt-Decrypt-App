@@ -64,7 +64,7 @@ export const App: React.FC = () => {
   }
   function generateHandler(e: MouseEvent) {
     e.preventDefault();
-    setKey(generateKey(12));
+    setKey(generateKey());
     setShowKey(true)
     setValidKey(true)
   }
